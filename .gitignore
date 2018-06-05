@@ -153,3 +153,7 @@ fabric.properties
 .idea/httpRequests
 
 
+### Project own ignores
+# Gradle generation
+.classpath
+.project
