@@ -15,6 +15,10 @@ tasks.withType(AbstractCompile) {  // ソースファイルの文字エンコー
     options.encoding = 'UTF-8'
 }
 
+repositories {
+    jcenter()
+}
+
 configurations {
     /* Eclipseのテストランチャー用のコンフィグレーション */
 	eclipseTestLauncher
@@ -24,10 +28,6 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
     eclipseTestLauncher "org.junit.platform:junit-platform-launcher:${junitPlatformVersion}"
-}
-
-repositories {
-    jcenter()
 }
 
 test {
