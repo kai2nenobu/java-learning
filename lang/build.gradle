@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'eclipse-wtp'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -9,12 +10,17 @@ tasks.withType(AbstractCompile) {  // ソースファイルの文字エンコー
     options.encoding = 'UTF-8'
 }
 
+configurations {
+    /* Eclipseのテストランチャー用のコンフィグレーション */
+	eclipseTestLauncher
+}
+
 dependencies {
     api 'org.apache.commons:commons-math3:3.6.1'
     implementation 'com.google.guava:guava:23.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.2.0'
+    eclipseTestLauncher 'org.junit.platform:junit-platform-launcher:1.2.0'
 }
 
 repositories {
@@ -23,4 +29,10 @@ repositories {
 
 test {
     useJUnitPlatform()
+}
+
+eclipse {
+    classpath {
+        plusConfigurations += [ configurations.eclipseTestLauncher ]
+    }
 }
