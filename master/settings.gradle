@@ -1,2 +1,3 @@
 rootProject.name = 'java-learning'
 includeFlat 'lang'
+includeFlat 'jmh'

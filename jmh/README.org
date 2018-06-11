@@ -1,0 +1,13 @@
+
+JMHによるマイクロベンチマークのやり方や、Gradle JMHプラグインからの実行方法などを学習する。
+
+* Gradle JMHプラグイン
+
+- [[https://plugins.gradle.org/plugin/me.champeau.gradle.jmh][me.champeau.gradle.jmh]]
+- [[https://github.com/melix/jmh-gradle-plugin][melix/jmh-gradle-plugin]]
+
+#+BEGIN_SRC groovy
+plugins {
+  id "me.champeau.gradle.jmh" version "0.4.6"
+}
+#+END_SRC
