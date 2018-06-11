@@ -1,6 +1,12 @@
 plugins {
     id 'java-library'
     id 'me.champeau.gradle.jmh' version '0.4.6'
+    id 'eclipse-wtp'
+}
+
+ext {
+    junitJupiterVersion = '5.2.0'
+    junitPlatformVersion = '1.2.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -12,4 +18,25 @@ tasks.withType(AbstractCompile) {  // ソースファイルの文字エンコー
 
 repositories {
     jcenter()
+}
+
+configurations {
+    /* Eclipseのテストランチャー用のコンフィグレーション */
+    eclipseTestLauncher
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    eclipseTestLauncher "org.junit.platform:junit-platform-launcher:${junitPlatformVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+eclipse {
+    classpath {
+        plusConfigurations += [ configurations.eclipseTestLauncher ]
+    }
 }
